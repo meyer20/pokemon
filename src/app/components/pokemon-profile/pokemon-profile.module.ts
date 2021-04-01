@@ -4,7 +4,7 @@ import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 import { PokemonProfileComponent } from './pokemon-profile.component';
 import { FavoriteModule } from '../favorite/favorite.module';
-import {LoadingModule} from '../loading/loading.module';
+import { LoadingModule } from '../loading/loading.module';
 
 @NgModule({
   imports: [CommonModule, IvyCarouselModule, FavoriteModule, LoadingModule],

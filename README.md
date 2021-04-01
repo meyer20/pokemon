@@ -1,5 +1,32 @@
 # Pokemon
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
+
+## Instalação e execução
+
+Primeiramente, executar o comando `npm i` para realizar o download das dependências do projeto, após isso, executar o comando `npm start-server` para subir o servidor da aplicação no endereço `http://localhost:4200/`.
+
+Ou, o projeto pode ser acessado através do link: https://meyer-pokemon.herokuapp.com/
+
+## Dependências utilizadas
+
+* Bootstrap 4
+* Angular Material
+* Express (Para utilização no Heroku)
+* ngx-infinite-scroll (Scroll infinito na listagem de Pokemons)
+* angular-responsive-carousel (Exibição das imagens do Pokemon na tela de perfil)
+
+## Demais considerações
+
+* Problema encontrado na execução do teste do componente de lista de Pokemons (pokemon-list), o componente de scroll infinite está quebrando a execução do teste. Issue relatada: https://github.com/orizens/ngx-infinite-scroll/issues/380
+  
+
+## Pendências
+
+* Desenvolvimento dos testes;
+
+-----------------------------------
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.1.
 
 ## Development server

@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { PokemonCardComponent } from './pokemon-card.component';
-import { PokemonProfileComponent } from '../pokemon-profile/pokemon-profile.component';
+import { FavoriteModule } from '../favorite/favorite.module';
 
 describe('PokemonCardComponent', () => {
   let component: PokemonCardComponent;
@@ -13,7 +13,8 @@ describe('PokemonCardComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientModule,
-        RouterModule.forRoot([{ path: 'profile', component: PokemonProfileComponent }])
+        RouterTestingModule,
+        FavoriteModule
       ],
       declarations: [ PokemonCardComponent ]
     })
