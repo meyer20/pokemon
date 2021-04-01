@@ -4,7 +4,7 @@
        alt="Card image cap">
   <app-favorite [pokemon]="pokemon" [right]="15" (removedFavorite)="removedFavorite.emit($event)"></app-favorite>
   <div class="card-body">
-    <h5 class="card-title">{{ pokemon.name }}</h5>
+    <h5 class="card-title capitalize-title">{{ pokemon.name }}</h5>
     <button type="button" class="btn btn-light text-center" (click)="viewMore(pokemon)">Saber mais</button>
   </div>
 </div>

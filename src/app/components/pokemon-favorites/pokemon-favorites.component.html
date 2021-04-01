@@ -3,9 +3,11 @@
     <app-pokemon-card  [pokemons]="pokemons" (removedFavorite)="removeFavorite($event)"></app-pokemon-card>
   </div>
   <div class="full-page-content" *ngIf="!pokemons.length">
-    <h3 class="text-center">
-      Nenhum Pokemon favoritado, volte para a listagem ou acesso o perfil de algum Pokemon para favorita-lo.
-    </h3>
+    <div class="full-page-title">
+      <h3 class="text-center">
+        Nenhum Pokemon favoritado, volte para a listagem ou acesso o perfil de algum Pokemon para favorita-lo.
+      </h3>
+    </div>
     <img class="centralized" src="/assets/empty.gif">
   </div>
 </div>

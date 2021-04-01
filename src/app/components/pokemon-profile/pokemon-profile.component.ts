@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { PokemonApi } from '../../api/pokemon.api';
 import { PokemonItem, PokemonTypeEnum, SpritePathItem } from '../../domain';
@@ -19,9 +20,11 @@ export class PokemonProfileComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
-              private pokemonAPI: PokemonApi) { }
+              private pokemonAPI: PokemonApi,
+              private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Perfil do Pokemon');
     this.pokemonId = this.activatedRoute.snapshot.params.pokemonId;
     this.getPokemon();
   }
@@ -30,9 +33,9 @@ export class PokemonProfileComponent implements OnInit {
     this.pokemonAPI.getPokemonById(this.pokemonId).subscribe(data => {
       this.isLoading = false;
       this.pokemonData = data;
+      this.titleService.setTitle(this.pokemonData.name);
       this.sprites = Utils.getSpritesPathFromPokemon(this.pokemonData.sprites);
-      console.log(this.pokemonTypeEnum[this.pokemonData.types[0].type.name.toUpperCase()]);
-    }, error => {
+    }, () => {
       this.router.navigate(['/not-found']);
     });
   }

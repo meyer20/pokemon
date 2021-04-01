@@ -15,3 +15,14 @@
   vertical-align: middle;
   text-align: center;
 }
+
+.full-page-title {
+  grid-row: 2;
+}
+
+.capitalize-title {
+  text-transform: capitalize;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

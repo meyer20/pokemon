@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
+
 import { PokemonItem, PokemonListItem } from '../domain';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
 
-  constructor() { }
+  constructor(private snackbarService: SnackbarService) { }
 
   setFavorite(pokemon: PokemonItem | PokemonListItem): void {
     let favorites = this.getFavorites();
@@ -17,6 +19,7 @@ export class LocalStorageService {
       favorites = [pokemon.id.toString()];
     }
 
+    this.snackbarService.show(`O Pokemon ${pokemon.name} foi adicionado aos favoritos!`);
     this.setLocalStorageFavorite(favorites);
   }
 
@@ -27,15 +30,15 @@ export class LocalStorageService {
       favorites.splice(favorites.indexOf(pokemon.id.toString()), 1);
     });
 
+    this.snackbarService.show(`O Pokemon ${pokemon.name} foi removido dos favoritos!`);
     this.setLocalStorageFavorite(favorites);
   }
 
   getFavorites(): Array<string> {
-    return JSON.parse(localStorage.getItem('favorites')) || [];
+    return Array.from(new Set(JSON.parse(localStorage.getItem('favorites')))) || [];
   }
 
   checkPokemonIsFavorite(pokemonId: string): boolean {
-    console.log('checkPokemonIsFavorite');
     return this.getFavorites().indexOf(pokemonId) > -1;
   }
 

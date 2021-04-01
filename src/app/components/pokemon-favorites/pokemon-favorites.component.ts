@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
+import { Title } from '@angular/platform-browser';
+
 import { LocalStorageService } from '../../services';
 import { PokemonApi } from '../../api/pokemon.api';
-import { forkJoin } from 'rxjs';
 import { PokemonItem, PokemonListItem } from '../../domain';
 
 @Component({
@@ -10,13 +12,16 @@ import { PokemonItem, PokemonListItem } from '../../domain';
   styleUrls: ['./pokemon-favorites.component.scss']
 })
 export class PokemonFavoritesComponent implements OnInit {
+  pokemons: Array<PokemonItem> = [];
+  favorites: Array<string> = [];
   isLoading = true;
-  favorites = [];
-  pokemons = [];
 
-  constructor(private localStorageService: LocalStorageService, private pokemonAPI: PokemonApi) { }
+  constructor(private localStorageService: LocalStorageService,
+              private pokemonAPI: PokemonApi,
+              private titleService: Title) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Pokemons favoritos');
     this.favorites = this.localStorageService.getFavorites();
     const pokemonRequestStack = [];
 
@@ -25,8 +30,7 @@ export class PokemonFavoritesComponent implements OnInit {
         pokemonRequestStack.push(this.pokemonAPI.getPokemonById(pokemonId));
       });
 
-      forkJoin(pokemonRequestStack).subscribe(data => {
-        console.log(data);
+      forkJoin(pokemonRequestStack).subscribe((data: Array<PokemonItem>) => {
         this.pokemons = data;
         this.isLoading = false;
       });

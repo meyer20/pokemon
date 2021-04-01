@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 import { PokemonApi } from '../../api/pokemon.api';
 import { PokemonListItem, ResponseItem } from '../../domain';
@@ -15,10 +16,13 @@ export class PokemonListComponent implements OnInit {
   hasNext: boolean;
   isLoading = true;
 
-  constructor(private pokemonApi: PokemonApi, private router: Router) { }
+  constructor(private pokemonApi: PokemonApi,
+              private router: Router,
+              private titleService: Title) { }
 
   ngOnInit(): void {
     this.getPokemons();
+    this.titleService.setTitle('Listagem de Pokemons');
   }
 
   private getPokemons(offset = 0): void {
@@ -30,7 +34,6 @@ export class PokemonListComponent implements OnInit {
   }
 
   onScroll(): void {
-    console.log('scroll');
     if (this.hasNext) {
       ++this.currentPage;
       this.getPokemons(this.currentPage * 20);
