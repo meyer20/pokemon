@@ -1,0 +1,11 @@
+<div class="card-columns"
+     infiniteScroll
+     [infiniteScrollDistance]="1"
+     [infiniteScrollThrottle]="50"
+     (scrolled)="onScroll()"
+     [infiniteScrollContainer]="'.parent-container'"
+     [fromRoot]="true"
+     [hidden]="isLoading">
+  <app-pokemon-card [pokemons]="pokemons"></app-pokemon-card>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>

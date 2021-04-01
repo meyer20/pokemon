@@ -1,0 +1,14 @@
+.card {
+  img {
+    width: 50%;
+    height: 50%;
+    margin: auto;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+
+  .card-title {
+    text-transform: capitalize;
+  }
+}

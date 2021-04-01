@@ -1,0 +1,31 @@
+<div class="container-lg" *ngIf="!isLoading">
+  <div class="row" *ngIf="pokemonData">
+    <div class="col-sm w-100">
+      <carousel
+        [images]="sprites"
+        [height]="200"
+        [objectFit]="'none'"
+        [arrows]="false"
+        [autoplay]="true"
+        [loop]="true"
+        [autoplayInterval]="1000"
+        [overflowCellsLimit]="0">
+      </carousel>
+    </div>
+    <div class="col-sm">
+      <h2>{{ pokemonData.name }}</h2>
+      <app-favorite [pokemon]="pokemonData"></app-favorite>
+      <hr>
+      <h6>Espécie: {{ pokemonData.species.name }}</h6>
+      <h6>Altura: {{ (pokemonData.height * 10) }}cm</h6>
+      <h6>Peso: {{ (pokemonData.weight * 0.1) }}Kg</h6>
+      <h6>Experiencia obtida ao derrota-lo: {{ pokemonData.base_experience }}XP</h6>
+      <hr>
+      <div *ngIf="pokemonData.types.length">
+        <h3>Tipo</h3>
+        <h6 *ngFor="let pokemonType of pokemonData.types"> {{ pokemonTypeEnum[pokemonType.type.name.toUpperCase()] }}</h6>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>

@@ -1,0 +1,4 @@
+<div class="card-columns">
+  <app-pokemon-card [pokemons]="pokemons" (removedFavorite)="removeFavorite($event)"></app-pokemon-card>
+</div>
+<app-loading *ngIf="isLoading"></app-loading>

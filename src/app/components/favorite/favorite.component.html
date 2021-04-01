@@ -1,0 +1,5 @@
+<i class="favorite-icon bi"
+   [ngClass]="pokemon.favorite ? 'bi-heart-fill' : 'bi-heart'"
+   [ngStyle]="{ 'right': right + 'px' }"
+   (click)="setFavorite()">
+</i>
