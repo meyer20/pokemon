@@ -10,6 +10,7 @@ const appRoutes: Routes = [
   { path: '', component: PokemonListComponent},
   { path: 'favorites', component: PokemonFavoritesComponent},
   { path: 'profile/:pokemonId', component: PokemonProfileComponent},
+  { path: 'not-found', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

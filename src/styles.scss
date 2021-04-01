@@ -2,3 +2,16 @@
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~bootstrap-icons/font/bootstrap-icons.css';
+
+
+.full-page-content {
+  height: calc(100vh - 76px);
+  display: grid;
+}
+
+.centralized {
+  margin: auto;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}

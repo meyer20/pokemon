@@ -30,6 +30,8 @@ export class PokemonFavoritesComponent implements OnInit {
         this.pokemons = data;
         this.isLoading = false;
       });
+    } else {
+      this.isLoading = false;
     }
   }
 

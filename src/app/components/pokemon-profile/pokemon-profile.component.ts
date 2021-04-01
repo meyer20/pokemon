@@ -33,7 +33,7 @@ export class PokemonProfileComponent implements OnInit {
       this.sprites = Utils.getSpritesPathFromPokemon(this.pokemonData.sprites);
       console.log(this.pokemonTypeEnum[this.pokemonData.types[0].type.name.toUpperCase()]);
     }, error => {
-      // this.router.
+      this.router.navigate(['/not-found']);
     });
   }
 }
