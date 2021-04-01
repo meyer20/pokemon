@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FavoriteComponent } from './favorite.component';
+import { ServicesModule } from '../../services/services.module';
+import { PokemonItemMock } from '../../mocks';
 
 describe('FavoriteComponent', () => {
   let component: FavoriteComponent;
@@ -8,7 +10,8 @@ describe('FavoriteComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FavoriteComponent ]
+      imports: [ServicesModule],
+      declarations: [FavoriteComponent]
     })
     .compileComponents();
   });
@@ -16,6 +19,7 @@ describe('FavoriteComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FavoriteComponent);
     component = fixture.componentInstance;
+    component.pokemon = new PokemonItemMock();
     fixture.detectChanges();
   });
 

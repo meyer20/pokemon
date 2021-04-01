@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ComponentsModule } from './components/components.module';
 import { AppRoutingModule } from './app.route';
 import { HeaderModule } from './components/header/header.module';
+import { ServicesModule } from './services/services.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HeaderModule } from './components/header/header.module';
     ComponentsModule,
     HeaderModule,
     MatSnackBarModule,
+    ServicesModule,
     BrowserAnimationsModule
   ],
   providers: [],
