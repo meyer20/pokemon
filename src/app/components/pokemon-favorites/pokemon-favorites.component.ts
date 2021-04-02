@@ -33,6 +33,8 @@ export class PokemonFavoritesComponent implements OnInit {
       forkJoin(pokemonRequestStack).subscribe((data: Array<PokemonItem>) => {
         this.pokemons = data;
         this.isLoading = false;
+      }, () => {
+        this.isLoading = false;
       });
     } else {
       this.isLoading = false;

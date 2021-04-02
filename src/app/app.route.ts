@@ -7,9 +7,10 @@ import { PokemonProfileComponent } from './components/pokemon-profile/pokemon-pr
 import { PokemonFavoritesComponent } from './components/pokemon-favorites/pokemon-favorites.component';
 
 const appRoutes: Routes = [
-  { path: '', component: PokemonListComponent},
-  { path: 'favorites', component: PokemonFavoritesComponent},
-  { path: 'profile/:pokemonId', component: PokemonProfileComponent},
+  { path: '', redirectTo: '/pokemons', pathMatch: 'full' },
+  { path: 'pokemons', component: PokemonListComponent },
+  { path: 'favorites', component: PokemonFavoritesComponent },
+  { path: 'profile/:pokemonId', component: PokemonProfileComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent }
 ];
