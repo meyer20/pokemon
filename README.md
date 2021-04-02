@@ -1,10 +1,10 @@
 # Pokemon
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.8.
-
 ## Instalação e execução
 
 Primeiramente, executar o comando `npm i` para realizar o download das dependências do projeto, após isso, executar o comando `npm start-server` para subir o servidor da aplicação no endereço `http://localhost:4200/`.
+
+Para execução dos testes, após instalar as dependências, executar o comando `npm run build` e depois ´npm run test´ ou `npm run test:coverage` para obter a cobertura de testes.
 
 Ou, o projeto pode ser acessado através do link: https://meyer-pokemon.herokuapp.com/
 
