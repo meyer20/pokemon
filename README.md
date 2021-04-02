@@ -24,7 +24,18 @@ Ou, o projeto pode ser acessado através do link: https://meyer-pokemon.herokuap
 ## Pendências
 
 * Desenvolvimento dos testes;
+* Ajuste na exibição dos cards (Porém no mobile está correto).
+  Está sendo exibido:
 
+      1 4 7
+      2 5 8
+      3 6 9
+
+Deveria ser exibido:
+
+    1 2 3
+    4 5 6
+    7 8 9 
 -----------------------------------
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.1.
