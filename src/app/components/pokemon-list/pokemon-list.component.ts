@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 import { PokemonApi } from '../../api/pokemon.api';
 import { PokemonListItem, ResponseItem } from '../../domain';
+import { Constants } from '../utils';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -36,7 +37,7 @@ export class PokemonListComponent implements OnInit {
   onScroll(): void {
     if (this.hasNext) {
       ++this.currentPage;
-      this.getPokemons(this.currentPage * 20);
+      this.getPokemons(this.currentPage * Constants.DEFAULT_PAGE_SIZE);
     }
   }
 

@@ -8,6 +8,7 @@ import { PokemonListComponent } from './pokemon-list.component';
 import { PokemonApi } from '../../api/pokemon.api';
 import { PokemonCardModule } from '../pokemon-card/pokemon-card.module';
 import { LoadingModule } from '../loading/loading.module';
+import { PokemonApiMock } from '../../mocks';
 
 describe('PokemonListComponent', () => {
   let component: PokemonListComponent;
@@ -24,7 +25,7 @@ describe('PokemonListComponent', () => {
         LoadingModule
       ],
       declarations: [PokemonListComponent],
-      providers: [PokemonApi]
+      providers: [{ provide: PokemonApi, useClass: PokemonApiMock }]
     })
     .compileComponents();
   });

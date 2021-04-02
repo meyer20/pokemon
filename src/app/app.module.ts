@@ -10,9 +10,6 @@ import { HeaderModule } from './components/header/header.module';
 import { ServicesModule } from './services/services.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -22,7 +19,7 @@ import { ServicesModule } from './services/services.module';
     ServicesModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  declarations: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

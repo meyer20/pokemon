@@ -1,12 +1,15 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { IvyCarouselModule } from 'angular-responsive-carousel';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { IvyCarouselModule } from 'angular-responsive-carousel';
 
 import { PokemonProfileComponent } from './pokemon-profile.component';
 import { ServicesModule } from '../../services/services.module';
 import { LoadingModule } from '../loading/loading.module';
 import { FavoriteModule } from '../favorite/favorite.module';
+import { PokemonApi } from '../../api/pokemon.api';
+import { PokemonApiMock } from '../../mocks';
 
 describe('PokemonProfileComponent', () => {
   let component: PokemonProfileComponent;
@@ -22,7 +25,11 @@ describe('PokemonProfileComponent', () => {
         LoadingModule,
         FavoriteModule
       ],
-      declarations: [ PokemonProfileComponent ]
+      declarations: [PokemonProfileComponent],
+      providers: [
+        { provide: PokemonApi, useClass: PokemonApiMock },
+        { provide: ActivatedRoute, useValue: { snapshot: { params: { pokemonId: 1 } } } }
+      ]
     })
     .compileComponents();
   });
@@ -33,7 +40,17 @@ describe('PokemonProfileComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create with valid pokemonId', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should create without pokemonId', () => {
+    jest.spyOn(component, 'getPokemon');
+    component.pokemonId = null;
+
+    component.ngOnInit();
+
+    expect(component.getPokemon).not.toHaveBeenCalled();
+    expect(component.isLoading).toBeFalsy();
   });
 });

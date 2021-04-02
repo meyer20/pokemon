@@ -8,14 +8,12 @@ import {
 } from '../domain';
 
 export class PokemonItemMock implements PokemonItem {
-  name: 'test';
+  name: string;
   abilities: Array<PokemonItemAbilities>;
   base_experience: 50;
   forms: Array<any>;
   height: 50;
-  id: 20;
-  is_default: false;
-  location_area_encounters: string;
+  id: string;
   moves: Array<any>;
   order: 5;
   species: DefaultPokemonItemInterface;
@@ -23,5 +21,5 @@ export class PokemonItemMock implements PokemonItem {
   stats: Array<PokemonItemStats>;
   types: Array<PokemonItemTypes>;
   weight: 60;
-  favorite: false;
+  favorite: boolean;
 }

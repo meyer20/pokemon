@@ -43,7 +43,7 @@ export class LocalStorageService {
   }
 
   clearFavorites(): void {
-    localStorage.removeItem('userData');
+    localStorage.removeItem('favorites');
   }
 
   private setLocalStorageFavorite(favorites: Array<string>): void {

@@ -6,10 +6,7 @@ import { LocalStorageService } from './local-storage.service';
 import { SnackbarService } from './snackbar.service';
 
 @NgModule({
-  imports: [
-    HttpClientModule,
-    MatSnackBarModule
-  ],
+  imports: [HttpClientModule, MatSnackBarModule],
   providers: [
     LocalStorageService,
     SnackbarService,

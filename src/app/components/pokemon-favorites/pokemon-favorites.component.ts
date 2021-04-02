@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { forkJoin } from 'rxjs';
 import { Title } from '@angular/platform-browser';
+import { forkJoin } from 'rxjs';
 
 import { LocalStorageService } from '../../services';
 import { PokemonApi } from '../../api/pokemon.api';
@@ -16,7 +16,7 @@ export class PokemonFavoritesComponent implements OnInit {
   favorites: Array<string> = [];
   isLoading = true;
 
-  constructor(private localStorageService: LocalStorageService,
+  constructor(public localStorageService: LocalStorageService,
               private pokemonAPI: PokemonApi,
               private titleService: Title) { }
 

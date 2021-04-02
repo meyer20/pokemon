@@ -7,7 +7,12 @@ import { LoadingModule } from '../loading/loading.module';
 import { PokemonCardModule } from '../pokemon-card/pokemon-card.module';
 
 @NgModule({
-  imports: [CommonModule, InfiniteScrollModule, LoadingModule, PokemonCardModule],
+  imports: [
+    CommonModule,
+    InfiniteScrollModule,
+    LoadingModule,
+    PokemonCardModule
+  ],
   declarations: [PokemonListComponent],
   exports: [PokemonListComponent]
 })

@@ -3,9 +3,7 @@ export interface PokemonItem {
   base_experience: number;
   forms: Array<any>;
   height: number;
-  id: number;
-  is_default: boolean;
-  location_area_encounters: string;
+  id: string;
   moves: Array<any>;
   name: string;
   order: number;

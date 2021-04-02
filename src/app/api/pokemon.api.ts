@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { ResponseItem, PokemonListItem, PokemonItem } from '../domain';
-import { Utils } from '../components/utils';
+import { Constants, Utils } from '../components/utils';
 import { LocalStorageService, SnackbarService } from '../services';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class PokemonApi {
               private localStorageService: LocalStorageService,
               private snackbarService: SnackbarService) {}
 
-  getPokemonList(offset = 0, limit = 20): Observable<ResponseItem<PokemonListItem>> | any {
+  getPokemonList(offset = 0, limit = Constants.DEFAULT_PAGE_SIZE): Observable<ResponseItem<PokemonListItem>> | any {
     return this.http.get<ResponseItem<PokemonListItem>>(`${this.path}?offset=${offset}&limit=${limit}`)
       .pipe(map((data) => {
         data.results.map(result => {

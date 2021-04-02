@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading">
   <div class="card-columns" *ngIf="pokemons.length">
-    <app-pokemon-card  [pokemons]="pokemons" (removedFavorite)="removeFavorite($event)"></app-pokemon-card>
+    <app-pokemon-card [pokemons]="pokemons" (removedFavorite)="removeFavorite($event)"></app-pokemon-card>
   </div>
   <div class="full-page-content" *ngIf="!pokemons.length">
     <div class="full-page-title">

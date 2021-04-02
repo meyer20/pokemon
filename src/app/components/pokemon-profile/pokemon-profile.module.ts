@@ -7,7 +7,12 @@ import { FavoriteModule } from '../favorite/favorite.module';
 import { LoadingModule } from '../loading/loading.module';
 
 @NgModule({
-  imports: [CommonModule, IvyCarouselModule, FavoriteModule, LoadingModule],
+  imports: [
+    CommonModule,
+    IvyCarouselModule,
+    FavoriteModule,
+    LoadingModule
+  ],
   declarations: [PokemonProfileComponent],
   exports: [PokemonProfileComponent]
 })

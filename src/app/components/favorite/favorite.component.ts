@@ -10,10 +10,10 @@ import { LocalStorageService } from '../../services';
 })
 export class FavoriteComponent {
   @Input() pokemon: PokemonListItem | PokemonItem;
-  @Input() right = 0;
+  @Input() marginRight = false;
   @Output() removedFavorite = new EventEmitter();
 
-  constructor(private localStorageService: LocalStorageService) { }
+  constructor(public localStorageService: LocalStorageService) { }
 
   setFavorite(): void {
     this.pokemon.favorite ? this.localStorageService.removeFavorite(this.pokemon) : this.localStorageService.setFavorite(this.pokemon);
