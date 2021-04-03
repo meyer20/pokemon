@@ -52,6 +52,6 @@ export class PokemonApiMock {
         url: 'test',
         name: 'batatinha'
       }]
-    })
+    });
   }
 }

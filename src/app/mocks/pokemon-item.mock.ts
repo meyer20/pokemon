@@ -10,6 +10,7 @@ import {
 export class PokemonItemMock implements PokemonItem {
   name: string;
   abilities: Array<PokemonItemAbilities>;
+  // tslint:disable-next-line:variable-name
   base_experience: 50;
   forms: Array<any>;
   height: 50;
