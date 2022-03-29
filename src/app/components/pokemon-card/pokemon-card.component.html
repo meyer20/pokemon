@@ -1,7 +1,9 @@
-<div class="card" *ngFor="let pokemon of pokemons">
+<div class="card">
   <img class="card-img-top w-50 h-50 m-auto text-center"
-       src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{{ pokemon.id }}.png"
-       [alt]="pokemon.name">
+       [src]="pokemonSpriteURL"
+       [alt]="pokemon.name"
+       loading="lazy"
+       (error)="pokemonSpriteLoadError($event)">
   <app-favorite
     [pokemon]="pokemon"
     [marginRight]="true"

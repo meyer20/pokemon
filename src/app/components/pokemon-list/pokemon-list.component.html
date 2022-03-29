@@ -1,11 +1,17 @@
-<div class="card-columns"
-     infiniteScroll
-     [infiniteScrollDistance]="1"
-     [infiniteScrollThrottle]="50"
-     (scrolled)="onScroll()"
-     [infiniteScrollContainer]="'.parent-container'"
-     [fromRoot]="true"
-     [hidden]="isLoading">
-  <app-pokemon-card [pokemons]="pokemons"></app-pokemon-card>
+<div class="container">
+  <div infiniteScroll
+       [infiniteScrollDistance]="1"
+       [infiniteScrollThrottle]="50"
+       (scrolled)="onScroll()"
+       [infiniteScrollContainer]="'.parent-container'"
+       [fromRoot]="true"
+       [hidden]="isLoading">
+    <div class="row row-gap-20">
+      <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let pokemon of pokemons">
+        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
+      </div>
+    </div>
+  </div>
 </div>
+
 <app-loading *ngIf="isLoading"></app-loading>

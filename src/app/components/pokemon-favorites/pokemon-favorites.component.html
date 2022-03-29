@@ -1,7 +1,10 @@
 <div *ngIf="!isLoading">
-  <div class="card-columns" *ngIf="pokemons.length">
-    <app-pokemon-card [pokemons]="pokemons" (removedFavorite)="removeFavorite($event)"></app-pokemon-card>
+  <div class="row row-gap-20" *ngIf="pokemons.length">
+    <div class="col-xs-12 col-sm-6 col-md-4" *ngFor="let pokemon of pokemons">
+      <app-pokemon-card [pokemon]="pokemon" (removedFavorite)="removeFavorite($event)"></app-pokemon-card>
+    </div>
   </div>
+
   <div class="full-page-content" *ngIf="!pokemons.length">
     <div class="full-page-title">
       <h3 class="text-center">

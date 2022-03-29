@@ -13,7 +13,7 @@ import { Utils } from '../utils';
 })
 export class PokemonProfileComponent implements OnInit {
   pokemonId: string;
-  pokemonData: PokemonItem;
+  pokemon: PokemonItem;
   sprites: Array<SpritePathItem> = [];
   pokemonTypeEnum = PokemonTypeEnum;
   isLoading = true;
@@ -33,11 +33,15 @@ export class PokemonProfileComponent implements OnInit {
   getPokemon(): void {
     this.pokemonAPI.getPokemonById(this.pokemonId.toString()).subscribe(data => {
       this.isLoading = false;
-      this.pokemonData = data;
-      this.titleService.setTitle(this.pokemonData.name);
-      this.sprites = Utils.getSpritesPathFromPokemon(this.pokemonData.sprites);
+      this.pokemon = data;
+      this.titleService.setTitle(this.pokemon.name);
+      this.sprites = Utils.getSpritesPathFromPokemon(this.pokemon.sprites);
     }, () => {
       this.router.navigate(['/not-found']);
     });
+  }
+
+  get pokemonSpriteURL(): string {
+    return Utils.getPokemonSpriteURL(this.pokemon.id);
   }
 }
