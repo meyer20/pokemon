@@ -24,7 +24,7 @@ export class PokemonCardComponent {
   }
 
   // TODO Implement Pokemon Sprite error handling
-  private pokemonSpriteLoadError(error: unknown): void {
+  pokemonSpriteLoadError(error: unknown): void {
     console.error('Erro ao carregar sprite do Pokemon:', this.pokemon, error);
   }
 }
