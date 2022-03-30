@@ -9,7 +9,7 @@
     [marginRight]="true"
     (removedFavorite)="removedFavorite.emit($event)">
   </app-favorite>
-  <div class="card-body">
+  <div class="card-body text-center">
     <h5 class="card-title capitalize-title">{{ pokemon.name }}</h5>
     <button type="button" class="btn btn-light text-center" (click)="viewMore(pokemon)">Saber mais</button>
   </div>

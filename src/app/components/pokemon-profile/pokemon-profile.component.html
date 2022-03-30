@@ -2,6 +2,7 @@
   <div class="row" *ngIf="pokemon">
     <div class="col-sm w-100">
       <img class="card-img-top w-75 m-auto text-center"
+           [ngStyle]="{'background-image': pokemonColorByType }"
            [src]="pokemon.sprite"
            [alt]="pokemon.name">
     </div>

@@ -6,7 +6,7 @@ export enum PokemonColorEnum {
   WATER = '#c2f3ff',
   BUG = '#e0e8a2',
   NORMAL = '#e6e6c3',
-  ELETRIC = '#fff1ba',
+  ELECTRIC = '#fff1ba',
   GROUND = '#e0ccb1',
   FIGHTING = '#fcada9',
   PSYCHIC = '#ffc9da',

@@ -1,4 +1,4 @@
-import { ISpritePathItem } from '../../domain';
+import { ISpritePathItem, Pokemon, PokemonColorEnum } from '../../domain';
 
 export class Utils {
   static readonly POKEMON_SPRITE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/{{pokemon.id}}.png';
@@ -23,5 +23,25 @@ export class Utils {
 
   static getPokemonSpriteURL(pokemonId: string): string {
     return this.POKEMON_SPRITE_URL.replace('{{pokemon.id}}', pokemonId);
+  }
+
+  static getPokemonBackgroundColorByType(pokemon: Pokemon): string {
+    let gradientString = 'linear-gradient(360deg, ';
+
+    const pokemonTypes = pokemon.pokemonTypes;
+
+    if (pokemonTypes.length === 1) {
+      return gradientString += 'white, ' + PokemonColorEnum[pokemonTypes[0].toUpperCase()] + ' 100%)';
+    } else {
+      pokemonTypes.forEach((type: string, index: number) => {
+        if (index > 0) {
+          gradientString += ',';
+          gradientString += PokemonColorEnum[pokemonTypes[index].toUpperCase()] + ' ' + ((index / pokemonTypes.length) * 100).toFixed(0) + '%';
+        } else {
+          gradientString += PokemonColorEnum[pokemonTypes[index].toUpperCase()] + ' 0%';
+        }
+      });
+      return gradientString += ')';
+    }
   }
 }

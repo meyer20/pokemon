@@ -25,7 +25,15 @@ export class Pokemon implements IPokemonItem {
   favorite?: boolean;
 
   get sprite(): string {
+    // Utils gerando dependencia circular, corrigir
     return Utils.getPokemonSpriteURL(this.id);
+  }
+
+  // TODO Colocar isso dentro dos Types do pokemon
+  get pokemonTypes(): Array<string> {
+    return this.types.map((pokemonType) => {
+      return pokemonType.type.name;
+    });
   }
 }
 
