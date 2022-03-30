@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { ResponseItem, PokemonListItem, PokemonItem } from '../domain';
+import { IResponseItem, IPokemonListItem, IPokemonItem, Pokemon, PokemonFactory } from '../domain';
 import { Constants, Utils } from '../components/utils';
 import { LocalStorageService, SnackbarService } from '../services';
 
@@ -17,8 +17,8 @@ export class PokemonApi {
               private localStorageService: LocalStorageService,
               private snackbarService: SnackbarService) {}
 
-  getPokemonList(offset = 0, limit = Constants.DEFAULT_PAGE_SIZE): Observable<ResponseItem<PokemonListItem>> | any {
-    return this.http.get<ResponseItem<PokemonListItem>>(`${this.path}?offset=${offset}&limit=${limit}`)
+  getPokemonList(offset = 0, limit = Constants.DEFAULT_PAGE_SIZE): Observable<IResponseItem<IPokemonListItem>> | Observable<any> {
+    return this.http.get<IResponseItem<IPokemonListItem>>(`${this.path}?offset=${offset}&limit=${limit}`)
       .pipe(map((data) => {
         data.results.map(result => {
           result.id = Utils.getPokemonIdFromURL(result.url);
@@ -31,10 +31,10 @@ export class PokemonApi {
       }));
   }
 
-  getPokemonById(pokemonId: string): Observable<PokemonItem> | any {
-    return this.http.get<PokemonItem>(`${this.path}${pokemonId}`).pipe(map((data) => {
-      data.favorite = this.localStorageService.checkPokemonIsFavorite(data.id.toString());
-      return data;
+  getPokemonById(pokemonId: string): Observable<Pokemon> | Observable<any> {
+    return this.http.get<Pokemon>(`${this.path}${pokemonId}`).pipe(map((pokemonData: IPokemonItem) => {
+      pokemonData.favorite = this.localStorageService.checkPokemonIsFavorite(pokemonData.id.toString());
+      return PokemonFactory(pokemonData);
     }), catchError((err) => {
       this.snackbarService.show('Ops, algo de errado aconteceu!', true);
       return err;

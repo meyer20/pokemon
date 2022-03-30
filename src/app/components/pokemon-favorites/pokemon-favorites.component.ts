@@ -4,7 +4,7 @@ import { forkJoin } from 'rxjs';
 
 import { LocalStorageService } from '../../services';
 import { PokemonApi } from '../../api/pokemon.api';
-import { PokemonItem, PokemonListItem } from '../../domain';
+import { Pokemon, IPokemonListItem } from '../../domain';
 
 @Component({
   selector: 'app-pokemon-favorites',
@@ -12,7 +12,7 @@ import { PokemonItem, PokemonListItem } from '../../domain';
   styleUrls: ['./pokemon-favorites.component.scss']
 })
 export class PokemonFavoritesComponent implements OnInit {
-  pokemons: Array<PokemonItem> = [];
+  pokemons: Array<Pokemon> = [];
   favorites: Array<string> = [];
   isLoading = true;
 
@@ -30,8 +30,8 @@ export class PokemonFavoritesComponent implements OnInit {
         pokemonRequestStack.push(this.pokemonAPI.getPokemonById(pokemonId));
       });
 
-      forkJoin(pokemonRequestStack).subscribe((data: Array<PokemonItem>) => {
-        this.pokemons = data;
+      forkJoin(pokemonRequestStack).subscribe((pokemonsDataArray: Array<Pokemon>) => {
+        this.pokemons = pokemonsDataArray;
         this.isLoading = false;
       }, () => {
         this.isLoading = false;
@@ -41,7 +41,7 @@ export class PokemonFavoritesComponent implements OnInit {
     }
   }
 
-  removeFavorite(pokemon: PokemonItem | PokemonListItem): void {
+  removeFavorite(pokemon: Pokemon | IPokemonListItem): void {
     this.pokemons = this.pokemons.filter(listPokemon => listPokemon.id !== pokemon.id);
   }
 }

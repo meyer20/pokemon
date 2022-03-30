@@ -3,8 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { PokemonApi } from '../../api/pokemon.api';
-import { PokemonItem, PokemonTypeEnum, SpritePathItem } from '../../domain';
-import { Utils } from '../utils';
+import { Pokemon, PokemonTypeEnum } from '../../domain';
 
 @Component({
   selector: 'app-pokemon-profile',
@@ -13,8 +12,7 @@ import { Utils } from '../utils';
 })
 export class PokemonProfileComponent implements OnInit {
   pokemonId: string;
-  pokemon: PokemonItem;
-  sprites: Array<SpritePathItem> = [];
+  pokemon: Pokemon;
   pokemonTypeEnum = PokemonTypeEnum;
   isLoading = true;
 
@@ -31,17 +29,13 @@ export class PokemonProfileComponent implements OnInit {
   }
 
   getPokemon(): void {
-    this.pokemonAPI.getPokemonById(this.pokemonId.toString()).subscribe(data => {
+    this.pokemonAPI.getPokemonById(this.pokemonId.toString()).subscribe((pokemonData: Pokemon) => {
       this.isLoading = false;
-      this.pokemon = data;
+      this.pokemon = pokemonData;
+      console.log(pokemonData);
       this.titleService.setTitle(this.pokemon.name);
-      this.sprites = Utils.getSpritesPathFromPokemon(this.pokemon.sprites);
     }, () => {
       this.router.navigate(['/not-found']);
     });
-  }
-
-  get pokemonSpriteURL(): string {
-    return Utils.getPokemonSpriteURL(this.pokemon.id);
   }
 }

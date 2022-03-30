@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
-import { PokemonItem, PokemonListItem } from '../../domain';
+import { IPokemonItem, IPokemonListItem } from '../../domain';
 import { LocalStorageService } from '../../services';
 
 @Component({
@@ -9,7 +9,7 @@ import { LocalStorageService } from '../../services';
   styleUrls: ['./favorite.component.scss']
 })
 export class FavoriteComponent {
-  @Input() pokemon: PokemonListItem | PokemonItem;
+  @Input() pokemon: IPokemonListItem | IPokemonItem;
   @Input() marginRight = false;
   @Output() removedFavorite = new EventEmitter();
 

@@ -1,5 +1,5 @@
-export interface PokemonItem {
-  abilities: Array<PokemonItemAbilities>;
+export interface IPokemonItem {
+  abilities: Array<IPokemonItemAbilities>;
   base_experience: number;
   forms: Array<any>;
   height: number;
@@ -7,31 +7,31 @@ export interface PokemonItem {
   moves: Array<any>;
   name: string;
   order: number;
-  species: DefaultPokemonItemInterface;
-  sprites: PokemonItemSprites;
-  stats: Array<PokemonItemStats>;
-  types: Array<PokemonItemTypes>;
+  species: IDefaultPokemonItem;
+  sprites: IPokemonItemSprites;
+  stats: Array<IPokemonItemStats>;
+  types: Array<IPokemonItemTypes>;
   weight: number;
   favorite?: boolean;
 }
 
-export interface DefaultPokemonItemInterface {
+export interface IDefaultPokemonItem {
   name: string;
   url: string;
 }
 
-export interface PokemonItemAbilities {
-  ability: DefaultPokemonItemInterface;
+export interface IPokemonItemAbilities {
+  ability: IDefaultPokemonItem;
   is_hidden: boolean;
   slot: number;
 }
 
 export interface PokemonItemTypes {
   slot: number;
-  type: DefaultPokemonItemInterface;
+  type: IDefaultPokemonItem;
 }
 
-export interface PokemonItemSprites {
+export interface IPokemonItemSprites {
   back_default: string;
   back_female: string;
   back_shiny: string;
@@ -42,13 +42,13 @@ export interface PokemonItemSprites {
   front_shiny_female: string;
 }
 
-export interface PokemonItemTypes {
+export interface IPokemonItemTypes {
   slot: number;
-  type: DefaultPokemonItemInterface;
+  type: IDefaultPokemonItem;
 }
 
-export interface PokemonItemStats {
+export interface IPokemonItemStats {
   base_stat: number;
   effort: number;
-  stat: DefaultPokemonItemInterface;
+  stat: IDefaultPokemonItem;
 }

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 
 import { PokemonApi } from '../../api/pokemon.api';
-import { PokemonListItem, ResponseItem } from '../../domain';
+import { IPokemonListItem, IResponseItem } from '../../domain';
 import { Constants } from '../utils';
 
 @Component({
@@ -12,7 +12,7 @@ import { Constants } from '../utils';
   styleUrls: ['./pokemon-list.component.scss']
 })
 export class PokemonListComponent implements OnInit {
-  pokemons: Array<PokemonListItem> = [];
+  pokemons: Array<IPokemonListItem> = [];
   currentPage = 0;
   hasNext: boolean;
   isLoading = true;
@@ -27,7 +27,7 @@ export class PokemonListComponent implements OnInit {
   }
 
   private getPokemons(offset = 0): void {
-    this.pokemonApi.getPokemonList(offset).subscribe((data: ResponseItem<PokemonListItem>) => {
+    this.pokemonApi.getPokemonList(offset).subscribe((data: IResponseItem<IPokemonListItem>) => {
       this.isLoading = false;
       this.hasNext = Boolean(data.next);
       this.pokemons.push(...data.results);
@@ -41,7 +41,7 @@ export class PokemonListComponent implements OnInit {
     }
   }
 
-  viewMore(pokemon: PokemonListItem): void {
+  viewMore(pokemon: IPokemonListItem): void {
     this.router.navigate(['/profile/' + pokemon.id] );
   }
 }

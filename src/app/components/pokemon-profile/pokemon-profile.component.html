@@ -1,18 +1,8 @@
 <div class="container-lg" *ngIf="!isLoading">
   <div class="row" *ngIf="pokemon">
     <div class="col-sm w-100">
-<!--      <carousel-->
-<!--        [images]="sprites"-->
-<!--        [height]="200"-->
-<!--        [objectFit]="'none'"-->
-<!--        [arrows]="false"-->
-<!--        [autoplay]="true"-->
-<!--        [loop]="true"-->
-<!--        [autoplayInterval]="1000"-->
-<!--        [overflowCellsLimit]="0">-->
-<!--      </carousel>-->
       <img class="card-img-top w-75 m-auto text-center"
-           [src]="pokemonSpriteURL"
+           [src]="pokemon.sprite"
            [alt]="pokemon.name">
     </div>
     <div class="col-sm">

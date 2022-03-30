@@ -1,4 +1,4 @@
-export interface ResponseItem<T> {
+export interface IResponseItem<T> {
   count: number;
   next: string;
   previous: any;

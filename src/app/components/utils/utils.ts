@@ -1,4 +1,4 @@
-import { SpritePathItem } from '../../domain';
+import { ISpritePathItem } from '../../domain';
 
 export class Utils {
   static readonly POKEMON_SPRITE_URL = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/{{pokemon.id}}.png';
@@ -7,8 +7,8 @@ export class Utils {
     return url.split('pokemon/')[1].replace('/', '');
   }
 
-  static getSpritesPathFromPokemon(sprites): Array<SpritePathItem> {
-    const pokemonSprites: Array<SpritePathItem> = [];
+  static getSpritesPathFromPokemon(sprites): Array<ISpritePathItem> {
+    const pokemonSprites: Array<ISpritePathItem> = [];
     if (sprites.other?.home) {
       sprites = sprites.other.home;
     }

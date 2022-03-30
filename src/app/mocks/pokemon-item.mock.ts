@@ -1,15 +1,15 @@
 import {
-  DefaultPokemonItemInterface,
-  PokemonItem,
-  PokemonItemAbilities,
-  PokemonItemSprites,
-  PokemonItemStats,
-  PokemonItemTypes
+  IDefaultPokemonItem,
+  IPokemonItem,
+  IPokemonItemAbilities,
+  IPokemonItemSprites,
+  IPokemonItemStats,
+  IPokemonItemTypes
 } from '../domain';
 
-export class PokemonItemMock implements PokemonItem {
+export class PokemonItemMock implements IPokemonItem {
   name: string;
-  abilities: Array<PokemonItemAbilities>;
+  abilities: Array<IPokemonItemAbilities>;
   // tslint:disable-next-line:variable-name
   base_experience: 50;
   forms: Array<any>;
@@ -17,10 +17,10 @@ export class PokemonItemMock implements PokemonItem {
   id: string;
   moves: Array<any>;
   order: 5;
-  species: DefaultPokemonItemInterface;
-  sprites: PokemonItemSprites;
-  stats: Array<PokemonItemStats>;
-  types: Array<PokemonItemTypes>;
+  species: IDefaultPokemonItem;
+  sprites: IPokemonItemSprites;
+  stats: Array<IPokemonItemStats>;
+  types: Array<IPokemonItemTypes>;
   weight: 60;
   favorite: boolean;
 }

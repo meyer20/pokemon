@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { PokemonListItem } from '../../domain';
+import { IPokemonListItem } from '../../domain';
 import { Utils } from '../utils';
 
 @Component({
@@ -10,12 +10,12 @@ import { Utils } from '../utils';
   styleUrls: ['./pokemon-card.component.scss']
 })
 export class PokemonCardComponent {
-  @Input() pokemon: PokemonListItem;
+  @Input() pokemon: IPokemonListItem;
   @Output() removedFavorite = new EventEmitter();
 
   constructor(private router: Router) { }
 
-  viewMore(pokemon: PokemonListItem): void {
+  viewMore(pokemon: IPokemonListItem): void {
     this.router.navigate(['/profile/' + pokemon.id] );
   }
 

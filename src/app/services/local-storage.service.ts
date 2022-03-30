@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { PokemonItem, PokemonListItem } from '../domain';
+import { IPokemonItem, IPokemonListItem } from '../domain';
 import { SnackbarService } from './snackbar.service';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class LocalStorageService {
 
   constructor(private snackbarService: SnackbarService) { }
 
-  setFavorite(pokemon: PokemonItem | PokemonListItem): void {
+  setFavorite(pokemon: IPokemonItem | IPokemonListItem): void {
     let favorites = this.getFavorites();
 
     if (favorites) {
@@ -23,7 +23,7 @@ export class LocalStorageService {
     this.setLocalStorageFavorite(favorites);
   }
 
-  removeFavorite(pokemon: PokemonItem | PokemonListItem): void {
+  removeFavorite(pokemon: IPokemonItem | IPokemonListItem): void {
     const favorites = this.getFavorites();
 
     favorites.filter(favorite => favorite === pokemon.id.toString()).forEach(() => {

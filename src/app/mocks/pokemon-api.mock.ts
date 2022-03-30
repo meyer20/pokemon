@@ -1,9 +1,9 @@
 import { Observable, of } from 'rxjs';
 
-import { PokemonItem, PokemonListItem, ResponseItem } from '../domain';
+import { IPokemonItem, IPokemonListItem, IResponseItem } from '../domain';
 
 export class PokemonApiMock {
-  public getPokemonById(pokemonId: string): Observable<PokemonItem> {
+  public getPokemonById(pokemonId: string): Observable<IPokemonItem> {
     return of({
       id: pokemonId,
       abilities: [],
@@ -42,7 +42,7 @@ export class PokemonApiMock {
     });
   }
 
-  public getPokemonList(): Observable<ResponseItem<PokemonListItem>>{
+  public getPokemonList(): Observable<IResponseItem<IPokemonListItem>>{
     return of({
       previous: null,
       next: '2',
