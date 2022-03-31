@@ -4,7 +4,6 @@ import { Title } from '@angular/platform-browser';
 
 import { PokemonApi } from '../../api/pokemon.api';
 import { Pokemon, PokemonTypeEnum } from '../../domain';
-import { Utils } from '../utils';
 
 @Component({
   selector: 'app-pokemon-profile',
@@ -38,9 +37,5 @@ export class PokemonProfileComponent implements OnInit {
     }, () => {
       this.router.navigate(['/not-found']);
     });
-  }
-
-  get pokemonColorByType(): string {
-    return Utils.getPokemonBackgroundColorByType(this.pokemon);
   }
 }

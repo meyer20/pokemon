@@ -2,5 +2,10 @@
   img {
     display: table-cell;
     vertical-align: middle;
+    min-height: 123px;
+    min-width: 123px;
   }
+
+  border-color: transparent !important;
+  cursor: pointer;
 }

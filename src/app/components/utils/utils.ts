@@ -26,7 +26,7 @@ export class Utils {
   }
 
   static getPokemonBackgroundColorByType(pokemon: Pokemon): string {
-    let gradientString = 'linear-gradient(360deg, ';
+    let gradientString = 'linear-gradient(' + this.generateRandomNumberBetweenRange(1, 360) + 'deg, ';
 
     const pokemonTypes = pokemon.pokemonTypes;
 
@@ -43,5 +43,9 @@ export class Utils {
       });
       return gradientString += ')';
     }
+  }
+
+  static generateRandomNumberBetweenRange(minimum: number, maximum: number): number {
+    return Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
   }
 }

@@ -23,8 +23,11 @@ export class PokemonFavoritesComponent implements OnInit {
   ngOnInit(): void {
     this.titleService.setTitle('Pokemons favoritos');
     this.favorites = this.localStorageService.getFavorites();
-    const pokemonRequestStack = [];
+    this.initData();
+  }
 
+  initData(): void {
+    const pokemonRequestStack = [];
     if (this.favorites.length) {
       this.favorites.forEach(pokemonId => {
         pokemonRequestStack.push(this.pokemonAPI.getPokemonById(pokemonId));

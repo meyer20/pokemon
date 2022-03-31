@@ -1,16 +1,17 @@
-<div class="card">
+<div class="card" [ngStyle]="{'background-image': pokemonCardColor }" (click)="viewMore(pokemon)">
   <img class="card-img-top w-50 h-50 m-auto text-center"
        [src]="pokemonSpriteURL"
        [alt]="pokemon.name"
-       loading="lazy"
        (error)="pokemonSpriteLoadError($event)">
   <app-favorite
+    (click)="$event.stopPropagation()"
     [pokemon]="pokemon"
     [marginRight]="true"
     (removedFavorite)="removedFavorite.emit($event)">
   </app-favorite>
   <div class="card-body text-center">
-    <h5 class="card-title capitalize-title">{{ pokemon.name }}</h5>
-    <button type="button" class="btn btn-light text-center" (click)="viewMore(pokemon)">Saber mais</button>
+    <span _ngcontent-vao-c47="" class="card-title capitalize-title" style="font-size: 2rem;">{{ pokemon.name }}</span>
+<!--    <h5 class="card-title capitalize-title">{{ pokemon.name }}</h5>-->
+<!--    <button type="button" class="btn btn-light text-center" (click)="viewMore(pokemon)">Saber mais</button>-->
   </div>
 </div>
