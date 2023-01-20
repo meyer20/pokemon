@@ -101,7 +101,6 @@
       }
     }
   },
-  "defaultProject": "pokemon",
   "schematics": {
     "@schematics/angular:component": {
       "style": "scss"
