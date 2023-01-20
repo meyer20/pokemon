@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { IPokemonItem, IPokemonListItem } from '../../domain';
-import { LocalStorageService } from '../../services';
+import { LocalStorageService } from '../../services/local-storage.service';
 
 @Component({
   selector: 'app-favorite',

@@ -16,10 +16,11 @@ export class PokemonProfileComponent implements OnInit {
   pokemonTypeEnum = PokemonTypeEnum;
   isLoading = true;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private pokemonAPI: PokemonApi,
-              private titleService: Title) {
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private pokemonAPI: PokemonApi,
+    private titleService: Title) {
     this.pokemonId = this.activatedRoute.snapshot.params.pokemonId;
   }
 
@@ -32,7 +33,6 @@ export class PokemonProfileComponent implements OnInit {
     this.pokemonAPI.getPokemonById(this.pokemonId.toString()).subscribe((pokemonData: Pokemon) => {
       this.isLoading = false;
       this.pokemon = pokemonData;
-      console.log(pokemonData);
       this.titleService.setTitle(this.pokemon.name);
     }, () => {
       this.router.navigate(['/not-found']);
