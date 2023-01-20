@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { forkJoin } from 'rxjs';
 
-import { LocalStorageService } from '../../services';
+import { LocalStorageService } from '../../services/local-storage.service';
 import { PokemonApi } from '../../api/pokemon.api';
 import { Pokemon, IPokemonListItem } from '../../domain';
 
@@ -16,9 +16,10 @@ export class PokemonFavoritesComponent implements OnInit {
   favorites: Array<string> = [];
   isLoading = true;
 
-  constructor(public localStorageService: LocalStorageService,
-              private pokemonAPI: PokemonApi,
-              private titleService: Title) { }
+  constructor(
+    public localStorageService: LocalStorageService,
+    private pokemonAPI: PokemonApi,
+    private titleService: Title) {}
 
   ngOnInit(): void {
     this.titleService.setTitle('Pokemons favoritos');

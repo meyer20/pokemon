@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 
 import { PokemonApi } from '../../api/pokemon.api';
 import { IPokemonListItem, IResponseItem } from '../../domain';
-import { Constants } from '../utils';
+import { Constants } from '../utils/constants';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -17,9 +17,10 @@ export class PokemonListComponent implements OnInit {
   hasNext: boolean;
   isLoading = true;
 
-  constructor(private pokemonApi: PokemonApi,
-              private router: Router,
-              private titleService: Title) { }
+  constructor(
+    private pokemonApi: PokemonApi,
+    private router: Router,
+    private titleService: Title) {}
 
   ngOnInit(): void {
     this.getPokemons();

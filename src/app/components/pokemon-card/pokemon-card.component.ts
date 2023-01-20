@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { IPokemonListItem, Pokemon } from '../../domain';
-import { Utils } from '../utils';
+import { Utils } from '../utils/utils';
 import { PokemonApi } from '../../api/pokemon.api';
 
 @Component({
