@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { IPokemonItem, IPokemonListItem } from '../domain';
-import { SnackbarService } from './snackbar.service';
+import { IPokemonItem, IPokemonListItem } from '../../domain';
+import { SnackbarService } from '../snackbar/snackbar.service';
 
 @Injectable({
   providedIn: 'root'

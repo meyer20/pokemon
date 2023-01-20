@@ -8,8 +8,6 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   toggledNavigator = false; // Não é uma solução elegante, porém como necessita do jquery para o dropdown funcionar, é melhor isso
 
-  constructor() { }
-
   changeToggleNavigatorState(): void {
     this.toggledNavigator = !this.toggledNavigator;
   }

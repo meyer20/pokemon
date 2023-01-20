@@ -1,2 +1,3 @@
-export * from './local-storage.service';
-export * from './snackbar.service';
+export * from './local-storage/index';
+export * from './snackbar/index';
+export * from './pokemon/index';

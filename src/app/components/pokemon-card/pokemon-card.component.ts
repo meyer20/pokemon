@@ -1,32 +1,52 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { IPokemonListItem, Pokemon } from '../../domain';
 import { Utils } from '../utils/utils';
-import { PokemonApi } from '../../api/pokemon.api';
+import { PokemonService, SnackbarService } from '../../services';
 
 @Component({
   selector: 'app-pokemon-card',
   templateUrl: './pokemon-card.component.html',
   styleUrls: ['./pokemon-card.component.scss']
 })
-export class PokemonCardComponent implements OnInit {
+export class PokemonCardComponent implements OnInit, OnDestroy {
   @Input() pokemon: IPokemonListItem;
   @Output() removedFavorite = new EventEmitter();
   pokemonData: Pokemon;
   pokemonCardColor: string;
+  private destroy$ = new Subject();
 
-  constructor(private router: Router, private pokemonApi: PokemonApi) {}
+  constructor(
+    private router: Router,
+    private pokemonService: PokemonService,
+    private snackbarService: SnackbarService
+  ) {}
 
   ngOnInit(): void {
     this.setPokemonData();
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
+
   setPokemonData(): void {
-    this.pokemonApi.getPokemonById(this.pokemon.id).subscribe((pokemonData) => {
-      this.pokemonData = pokemonData;
-      this.pokemonCardColor = this.pokemonColorByType;
-    });
+    this.pokemonService.getPokemonById(this.pokemon.id)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError((err) => {
+          this.snackbarService.show('Ops, algo de errado aconteceu!', true);
+          return err;
+        })
+      )
+      .subscribe((pokemonData: Pokemon) => {
+        this.pokemonData = pokemonData;
+        this.pokemonCardColor = this.pokemonColorByType;
+      });
   }
 
   viewMore(pokemon: IPokemonListItem): void {

@@ -8,7 +8,7 @@ import { ServicesModule } from '../../services/services.module';
 import { LoadingModule } from '../loading/loading.module';
 import { FavoriteModule } from '../favorite/favorite.module';
 import { PokemonApi } from '../../api/pokemon.api';
-import { PokemonApiMock } from '../../mocks';
+import { PokemonApiMock } from '../../mocks/pokemon-api.mock';
 
 describe('PokemonProfileComponent', () => {
   let component: PokemonProfileComponent;

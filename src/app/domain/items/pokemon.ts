@@ -6,14 +6,20 @@ import {
   IPokemonItemStats,
   IPokemonItemTypes
 } from '../interfaces';
-import { Utils } from '../../components/utils';
+import { Utils } from '../../components/utils/utils';
 
 export class Pokemon implements IPokemonItem {
+  constructor(pokemonItem: IPokemonItem) {
+    Object.assign(this, pokemonItem);
+  }
+
   id: string;
   abilities: Array<IPokemonItemAbilities>;
   base_experience: number;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   forms: Array<any>;
   height: number;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   moves: Array<any>;
   name: string;
   order: number;
@@ -35,25 +41,4 @@ export class Pokemon implements IPokemonItem {
       return pokemonType.type.name;
     });
   }
-}
-
-export function PokemonFactory(pokemonData: IPokemonItem): Pokemon {
-  const pokemon = new Pokemon();
-
-  pokemon.id = pokemonData.id;
-  pokemon.abilities = pokemonData.abilities;
-  pokemon.base_experience = pokemonData.base_experience;
-  pokemon.forms = pokemonData.forms;
-  pokemon.height = pokemonData.height;
-  pokemon.moves = pokemonData.moves;
-  pokemon.name = pokemonData.name;
-  pokemon.order = pokemonData.order;
-  pokemon.species = pokemonData.species;
-  pokemon.sprites = pokemonData.sprites;
-  pokemon.stats = pokemonData.stats;
-  pokemon.types = pokemonData.types;
-  pokemon.weight = pokemonData.weight;
-  pokemon.favorite = pokemonData.favorite;
-
-  return pokemon;
 }

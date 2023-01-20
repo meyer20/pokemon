@@ -1,7 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 
 import { IPokemonItem, IPokemonListItem } from '../../domain';
-import { LocalStorageService } from '../../services/local-storage.service';
+import { LocalStorageService } from '../../services/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-favorite',
@@ -16,7 +16,9 @@ export class FavoriteComponent {
   constructor(public localStorageService: LocalStorageService) { }
 
   setFavorite(): void {
-    this.pokemon.favorite ? this.localStorageService.removeFavorite(this.pokemon) : this.localStorageService.setFavorite(this.pokemon);
+    this.pokemon.favorite
+      ? this.localStorageService.removeFavorite(this.pokemon)
+      : this.localStorageService.setFavorite(this.pokemon);
     this.pokemon.favorite = !this.pokemon.favorite;
     this.removedFavorite.emit(this.pokemon);
   }

@@ -12,9 +12,11 @@ export class PokemonItemMock implements IPokemonItem {
   abilities: Array<IPokemonItemAbilities>;
   // tslint:disable-next-line:variable-name
   base_experience: 50;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   forms: Array<any>;
   height: 50;
   id: string;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   moves: Array<any>;
   order: 5;
   species: IDefaultPokemonItem;
