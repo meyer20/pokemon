@@ -12,6 +12,16 @@
     "e2e": "ng e2e"
   },
   "private": true,
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
   "dependencies": {
     "@angular-builders/jest": "^12.1.2",
     "@angular/animations": "^15.1.1",
@@ -24,9 +34,12 @@
     "@angular/platform-browser": "^15.1.1",
     "@angular/platform-browser-dynamic": "^15.1.1",
     "@angular/router": "^15.1.1",
+    "@commitlint/cli": "^17.4.2",
+    "@commitlint/config-conventional": "^17.4.2",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.4.1",
     "express": "^4.18.2",
+    "husky": "^8.0.3",
     "ngx-infinite-scroll": "^15.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.4.1",
