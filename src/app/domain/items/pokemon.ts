@@ -6,14 +6,16 @@ import {
   IPokemonItemStats,
   IPokemonItemTypes
 } from '../interfaces';
-import { Utils } from '../../components/utils';
+import { Utils } from '../../components/utils/utils';
 
 export class Pokemon implements IPokemonItem {
   id: string;
   abilities: Array<IPokemonItemAbilities>;
   base_experience: number;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   forms: Array<any>;
   height: number;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   moves: Array<any>;
   name: string;
   order: number;

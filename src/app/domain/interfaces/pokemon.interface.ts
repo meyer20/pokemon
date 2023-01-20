@@ -1,9 +1,11 @@
 export interface IPokemonItem {
   abilities: Array<IPokemonItemAbilities>;
   base_experience: number;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   forms: Array<any>;
   height: number;
   id: string;
+  /* eslint-disable  @typescript-eslint/no-explicit-any */
   moves: Array<any>;
   name: string;
   order: number;

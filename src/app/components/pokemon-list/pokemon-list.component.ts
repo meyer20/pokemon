@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { finalize, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 import { PokemonApi } from '../../api/pokemon.api';
 import { IPokemonListItem, IResponseItem } from '../../domain';
 import { Constants } from '../utils/constants';
+import { SnackbarService } from '../../services';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -20,7 +23,8 @@ export class PokemonListComponent implements OnInit {
   constructor(
     private pokemonApi: PokemonApi,
     private router: Router,
-    private titleService: Title) {}
+    private titleService: Title,
+    private snackbarService: SnackbarService) {}
 
   ngOnInit(): void {
     this.getPokemons();
@@ -28,11 +32,20 @@ export class PokemonListComponent implements OnInit {
   }
 
   private getPokemons(offset = 0): void {
-    this.pokemonApi.getPokemonList(offset).subscribe((data: IResponseItem<IPokemonListItem>) => {
-      this.isLoading = false;
-      this.hasNext = Boolean(data.next);
-      this.pokemons.push(...data.results);
-    });
+    this.pokemonApi.getPokemonList(offset)
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        }),
+        catchError((err) => {
+          this.snackbarService.show('Ops, algo de errado aconteceu!', true);
+          return throwError(err);
+        })
+      )
+      .subscribe((data: IResponseItem<IPokemonListItem>) => {
+        this.hasNext = Boolean(data.next);
+        this.pokemons.push(...data.results);
+      });
   }
 
   onScroll(): void {

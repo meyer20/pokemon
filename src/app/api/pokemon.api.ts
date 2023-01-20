@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { IResponseItem, IPokemonListItem, IPokemonItem, Pokemon, PokemonFactory } from '../domain';
 import { Constants, Utils } from '../components/utils';
-import { LocalStorageService, SnackbarService } from '../services';
+import { LocalStorageService } from '../services/local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +13,9 @@ import { LocalStorageService, SnackbarService } from '../services';
 export class PokemonApi {
   private readonly path = 'https://pokeapi.co/api/v2/pokemon/';
 
-  constructor(private http: HttpClient,
-              private localStorageService: LocalStorageService,
-              private snackbarService: SnackbarService) {}
+  constructor(private http: HttpClient, private localStorageService: LocalStorageService) {}
 
-  getPokemonList(offset = 0, limit = Constants.DEFAULT_PAGE_SIZE): Observable<IResponseItem<IPokemonListItem>> | Observable<any> {
+  getPokemonList(offset = 0, limit = Constants.DEFAULT_PAGE_SIZE): Observable<IResponseItem<IPokemonListItem>> {
     return this.http.get<IResponseItem<IPokemonListItem>>(`${this.path}?offset=${offset}&limit=${limit}`)
       .pipe(map((data) => {
         data.results.map(result => {
@@ -25,19 +23,13 @@ export class PokemonApi {
           result.favorite = this.localStorageService.checkPokemonIsFavorite(result.id.toString());
         });
         return data;
-      }), catchError((err) => {
-        this.snackbarService.show('Ops, algo de errado aconteceu!', true);
-        return err;
       }));
   }
 
-  getPokemonById(pokemonId: string): Observable<Pokemon> | Observable<any> {
+  getPokemonById(pokemonId: string): Observable<Pokemon> {
     return this.http.get<Pokemon>(`${this.path}${pokemonId}`).pipe(map((pokemonData: IPokemonItem) => {
       pokemonData.favorite = this.localStorageService.checkPokemonIsFavorite(pokemonData.id.toString());
       return PokemonFactory(pokemonData);
-    }), catchError((err) => {
-      this.snackbarService.show('Ops, algo de errado aconteceu!', true);
-      return err;
     }));
   }
 }

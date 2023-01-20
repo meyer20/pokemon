@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { catchError } from 'rxjs/operators';
+import { finalize, throwError } from 'rxjs';
 
 import { PokemonApi } from '../../api/pokemon.api';
 import { Pokemon, PokemonTypeEnum } from '../../domain';
@@ -30,12 +32,19 @@ export class PokemonProfileComponent implements OnInit {
   }
 
   getPokemon(): void {
-    this.pokemonAPI.getPokemonById(this.pokemonId.toString()).subscribe((pokemonData: Pokemon) => {
-      this.isLoading = false;
-      this.pokemon = pokemonData;
-      this.titleService.setTitle(this.pokemon.name);
-    }, () => {
-      this.router.navigate(['/not-found']);
-    });
+    this.pokemonAPI.getPokemonById(this.pokemonId.toString())
+      .pipe(
+        finalize(() => {
+          this.isLoading = false;
+        }),
+        catchError((err) => {
+          this.router.navigate(['/not-found']);
+          return throwError(err);
+        })
+      )
+      .subscribe((pokemonData: Pokemon) => {
+        this.pokemon = pokemonData;
+        this.titleService.setTitle(this.pokemon.name);
+      });
   }
 }
