@@ -8,8 +8,7 @@
     "build": "ng build",
     "test": "ng test",
     "test:coverage": "ng test --coverage --runInBand",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "lint": "ng lint"
   },
   "private": true,
   "husky": {

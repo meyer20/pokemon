@@ -1,27 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { catchError } from 'rxjs/operators';
-import { finalize, throwError } from 'rxjs';
+import { finalize, Subject, takeUntil, throwError } from 'rxjs';
 
-import { PokemonApi } from '../../api/pokemon.api';
 import { Pokemon, PokemonTypeEnum } from '../../domain';
+import { PokemonService } from '../../services';
 
 @Component({
   selector: 'app-pokemon-profile',
-  templateUrl: './pokemon-profile.component.html',
-  styleUrls: ['./pokemon-profile.component.scss']
+  templateUrl: './pokemon-profile.component.html'
 })
-export class PokemonProfileComponent implements OnInit {
+export class PokemonProfileComponent implements OnInit, OnDestroy {
   pokemonId: string;
   pokemon: Pokemon;
   pokemonTypeEnum = PokemonTypeEnum;
   isLoading = true;
+  private destroy$ = new Subject();
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private pokemonAPI: PokemonApi,
+    private pokemonService: PokemonService,
     private titleService: Title) {
     this.pokemonId = this.activatedRoute.snapshot.params.pokemonId;
   }
@@ -31,9 +31,15 @@ export class PokemonProfileComponent implements OnInit {
     this.pokemonId ? this.getPokemon() : this.isLoading = false;
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
+
   getPokemon(): void {
-    this.pokemonAPI.getPokemonById(this.pokemonId.toString())
+    this.pokemonService.getPokemonById(this.pokemonId.toString())
       .pipe(
+        takeUntil(this.destroy$),
         finalize(() => {
           this.isLoading = false;
         }),

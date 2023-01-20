@@ -1,8 +1,9 @@
 <div class="card" [ngStyle]="{'background-image': pokemonCardColor }" (click)="viewMore(pokemon)">
-  <img class="card-img-top w-50 h-50 m-auto text-center"
-       [src]="pokemonSpriteURL"
-       [alt]="pokemon.name"
-       (error)="pokemonSpriteLoadError($event)">
+  <img
+    class="card-img-top w-50 h-50 m-auto text-center"
+    [src]="pokemonSpriteURL"
+    [alt]="pokemon.name"
+    (error)="pokemonSpriteLoadError($event)">
   <app-favorite
     (click)="$event.stopPropagation()"
     [pokemon]="pokemon"

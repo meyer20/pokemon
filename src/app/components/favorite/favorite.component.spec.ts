@@ -3,7 +3,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FavoriteComponent } from './favorite.component';
 import { ServicesModule } from '../../services/services.module';
-import { PokemonItemMock } from '../../mocks';
+import { PokemonItemMock } from '../../mocks/pokemon-item.mock';
 
 describe('FavoriteComponent', () => {
   let component: FavoriteComponent;

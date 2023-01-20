@@ -1,39 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { finalize, throwError } from 'rxjs';
+import { finalize, Subject, takeUntil, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { PokemonApi } from '../../api/pokemon.api';
 import { IPokemonListItem, IResponseItem } from '../../domain';
 import { Constants } from '../utils/constants';
-import { SnackbarService } from '../../services';
+import { PokemonService, SnackbarService } from '../../services';
 
 @Component({
   selector: 'app-pokemon-list',
-  templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.scss']
+  templateUrl: './pokemon-list.component.html'
 })
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent implements OnInit, OnDestroy {
   pokemons: Array<IPokemonListItem> = [];
   currentPage = 0;
   hasNext: boolean;
   isLoading = true;
+  private destroy$ = new Subject();
 
   constructor(
-    private pokemonApi: PokemonApi,
+    private pokemonService: PokemonService,
     private router: Router,
     private titleService: Title,
-    private snackbarService: SnackbarService) {}
+    private snackbarService: SnackbarService
+  ) {}
 
   ngOnInit(): void {
     this.getPokemons();
     this.titleService.setTitle('Listagem de Pokemons');
   }
 
+  ngOnDestroy(): void {
+    this.destroy$.next(null);
+    this.destroy$.complete();
+  }
+
   private getPokemons(offset = 0): void {
-    this.pokemonApi.getPokemonList(offset)
+    this.pokemonService.getPokemonList(offset)
       .pipe(
+        takeUntil(this.destroy$),
         finalize(() => {
           this.isLoading = false;
         }),

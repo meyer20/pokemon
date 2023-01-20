@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
-import { LocalStorageService } from './local-storage.service';
-import { SnackbarService } from './snackbar.service';
+import { LocalStorageService, PokemonService, SnackbarService } from './index';
 
 @NgModule({
   imports: [HttpClientModule, MatSnackBarModule],
   providers: [
     LocalStorageService,
     SnackbarService,
-    MatSnackBar
+    MatSnackBar,
+    PokemonService
   ]
 })
 export class ServicesModule { }
